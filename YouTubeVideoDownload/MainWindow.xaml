@@ -1,0 +1,18 @@
+﻿<Window x:Class="YouTubeVideoDownload.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:YouTubeVideoDownload"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+            <TextBox Text="{Binding VideoUrl, UpdateSourceTrigger=PropertyChanged}" Width="300" Margin="0,0,0,10" />
+            <Button Content="Скачать видео" Command="{Binding DownloadVideoCommand}" Width="150" Margin="0,0,0,10" />
+            <Button Content="Запустить GoodbyeDPI" Command="{Binding StartGoodbyeDpiCommand}" Width="200" Margin="0,0,0,10" />
+            <Button Content="Остановить GoodbyeDPI" Command="{Binding StopGoodbyeDpiCommand}" Width="200" Margin="0,0,0,10" />
+            <TextBlock Text="{Binding DownloadStatus}" TextWrapping="Wrap" Width="300" Margin="0,10,0,0" />
+        </StackPanel>
+    </Grid>
+</Window>
