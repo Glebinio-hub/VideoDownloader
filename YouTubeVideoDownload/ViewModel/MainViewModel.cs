@@ -15,16 +15,16 @@ namespace YouTubeVideoDownload.ViewModel
 {
     public class MainViewModel : INotifyPropertyChanged
     {
-        private string _videoUrl;
-        private string _downloadStatus;
-        private Process _goodbyeDpiProcess;
+        private string videoUrl;
+        private string downloadStatus;
+        private Process goodbyeDpiProcess;
 
         public string VideoUrl
         {
-            get => _videoUrl;
+            get => videoUrl;
             set
             {
-                _videoUrl = value;
+                videoUrl = value;
                 OnPropertyChanged(nameof(VideoUrl));
                 DownloadVideoCommand.RaiseCanExecuteChanged();
             }
@@ -32,10 +32,10 @@ namespace YouTubeVideoDownload.ViewModel
 
         public string DownloadStatus
         {
-            get => _downloadStatus;
+            get => downloadStatus;
             set
             {
-                _downloadStatus = value;
+                downloadStatus = value;
                 OnPropertyChanged(nameof(DownloadStatus));
             }
         }
@@ -83,7 +83,7 @@ namespace YouTubeVideoDownload.ViewModel
         {
             try
             {
-                _goodbyeDpiProcess = new Process
+                goodbyeDpiProcess = new Process
                 {
                     StartInfo = new ProcessStartInfo
                     {
@@ -94,7 +94,7 @@ namespace YouTubeVideoDownload.ViewModel
                     }
                 };
 
-                _goodbyeDpiProcess.Start();
+                goodbyeDpiProcess.Start();
                 DownloadStatus = "GoodbyeDPI запущен.";
             }
             catch (Exception ex)
@@ -110,11 +110,11 @@ namespace YouTubeVideoDownload.ViewModel
 
         private void ExecuteStopGoodbyeDpi()
         {
-            if (_goodbyeDpiProcess != null && !_goodbyeDpiProcess.HasExited)
+            if (goodbyeDpiProcess != null && !goodbyeDpiProcess.HasExited)
             {
-                _goodbyeDpiProcess.Kill();
-                _goodbyeDpiProcess.Dispose();
-                _goodbyeDpiProcess = null;
+                goodbyeDpiProcess.Kill();
+                goodbyeDpiProcess.Dispose();
+                goodbyeDpiProcess = null;
                 DownloadStatus = "GoodbyeDPI остановлен.";
             }
         }
@@ -126,7 +126,7 @@ namespace YouTubeVideoDownload.ViewModel
 
         private bool IsGoodbyeDpiRunning()
         {
-            return _goodbyeDpiProcess != null && !_goodbyeDpiProcess.HasExited;
+            return goodbyeDpiProcess != null && !goodbyeDpiProcess.HasExited;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -137,4 +137,4 @@ namespace YouTubeVideoDownload.ViewModel
         }
     }
 }
-  
+
